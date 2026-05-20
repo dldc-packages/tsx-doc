@@ -3,7 +3,8 @@
   "version": "0.1.0",
   "exports": {
     ".": "./mod.ts",
-    "./jsx": "./jsx.ts"
+    "./jsx": "./jsx.ts",
+    "./jsx-runtime": "./jsx.ts"
   },
   "imports": {
     "@std/expect": "jsr:@std/expect@^1.0.19"
