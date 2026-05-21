@@ -6,17 +6,27 @@
     "./jsx": "./jsx.ts",
     "./jsx-runtime": "./jsx.ts"
   },
+  "compilerOptions": {
+    "module": "esnext",
+    "moduleResolution": "bundler",
+    "jsx": "react-jsx",
+    "jsxImportSource": "@dldc/tsx-doc"
+  },
   "imports": {
-    "@std/expect": "jsr:@std/expect@^1.0.19"
+    "@std/expect": "jsr:@std/expect@^1.0.19",
+    "ts-morph": "jsr:@ts-morph/ts-morph@^28.0.0"
   },
   "tasks": {
     "test:run": "deno test -A",
-    "test:watch": "deno test --watch",
+    "test:watch": "deno test -A --watch",
     "bump": "deno run -A jsr:@mys/bump@1",
     "deps:outdated": "deno outdated",
     "deps:update": "deno outdated --update --latest --interactive",
     "check": "deno fmt --check . && deno lint . && deno check **/*.ts && deno task test:run",
     "test:coverage": "deno test -A --coverage=coverage && deno coverage coverage --html"
+  },
+  "fmt": {
+    "lineWidth": 120
   },
   "lint": {
     "rules": {
