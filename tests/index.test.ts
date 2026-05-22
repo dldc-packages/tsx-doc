@@ -24,13 +24,28 @@ Deno.test("parse top-level primitive literals", () => {
   expect(parse(
     file(
       '"text";',
+      "`templated`;",
       "42;",
       "true;",
       "false;",
       "null;",
     ),
   )).toEqual({
-    children: ["text", 42, true, false, null],
+    children: ["text", "templated", 42, true, false, null],
+  });
+});
+
+Deno.test("parse template literals in JSX expressions and attributes", () => {
+  expect(parse(
+    file(
+      "<Root label={`hello`}>",
+      "  {`world`}",
+      "</Root>",
+    ),
+  )).toEqual({
+    children: [
+      createDocElement("Root", { label: "hello" }, ["world"]),
+    ],
   });
 });
 

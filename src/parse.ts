@@ -70,6 +70,9 @@ function parseExpression(expr: Expression<ts.Expression>): unknown {
   if (expr.isKind(SyntaxKind.StringLiteral)) {
     return expr.getLiteralValue();
   }
+  if (expr.isKind(SyntaxKind.NoSubstitutionTemplateLiteral)) {
+    return expr.getLiteralValue();
+  }
   if (expr.isKind(SyntaxKind.TrueKeyword)) {
     return true;
   }
