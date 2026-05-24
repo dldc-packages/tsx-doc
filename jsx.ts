@@ -22,3 +22,5 @@ export type Node =
   | null
   | undefined
   | Node[];
+
+export type PropsWithChildren<P> = P & ElementChildrenAttribute;
