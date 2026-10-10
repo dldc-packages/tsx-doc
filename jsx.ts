@@ -14,13 +14,6 @@ export interface ElementChildrenAttribute {
   children?: Node;
 }
 
-export type Node =
-  | Element
-  | string
-  | number
-  | boolean
-  | null
-  | undefined
-  | Node[];
+export type Node = Element | string | number | boolean | null | undefined | Node[];
 
 export type PropsWithChildren<P> = P & ElementChildrenAttribute;

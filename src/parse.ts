@@ -19,10 +19,7 @@ export function parse(content: string): Doc {
   const project = new Project();
   const sourceFile = project.createSourceFile("file.tsx", content);
 
-  const skipKinds = new Set([
-    SyntaxKind.ImportDeclaration,
-    SyntaxKind.InterfaceDeclaration,
-  ]);
+  const skipKinds = new Set([SyntaxKind.ImportDeclaration, SyntaxKind.InterfaceDeclaration]);
 
   const elements: unknown[] = [];
 
@@ -96,14 +93,18 @@ function parseExpression(expr: Expression<ts.Expression>): unknown {
 }
 
 function parseJsxElement(element: JsxElement | JsxSelfClosingElement): unknown {
-  const openingElement = element.isKind(SyntaxKind.JsxElement) ? element.getOpeningElement() : element;
+  const openingElement = element.isKind(SyntaxKind.JsxElement)
+    ? element.getOpeningElement()
+    : element;
   const tagNameNode = openingElement.getTagNameNode();
   if (!tagNameNode.isKind(SyntaxKind.Identifier)) {
     throw new Error(`Unsupported tag name kind: ${tagNameNode.getKindName()}`);
   }
   const tagName = tagNameNode.getText();
   const attributes = openingElement.getAttributes();
-  const children = element.isKind(SyntaxKind.JsxElement) ? parseJsxChildren(element.getJsxChildren()) : undefined;
+  const children = element.isKind(SyntaxKind.JsxElement)
+    ? parseJsxChildren(element.getJsxChildren())
+    : undefined;
   return createDocElement(tagName, parseAttributes(attributes), children);
 }
 
@@ -111,9 +112,7 @@ function parseJsxFragment(fragment: JsxFragment): unknown {
   return createDocElement("Fragment", undefined, parseJsxChildren(fragment.getJsxChildren()));
 }
 
-function parseJsxChildren(
-  children: JsxChild[],
-): unknown[] {
+function parseJsxChildren(children: JsxChild[]): unknown[] {
   const result: unknown[] = [];
   for (const child of children) {
     if (child.isKind(SyntaxKind.JsxText)) {
@@ -206,7 +205,13 @@ function parseAttributes(attributes: JsxAttributeLike[]): Record<string, unknown
 }
 
 function parseJsxValue(
-  initializer: JsxSelfClosingElement | JsxElement | JsxExpression | JsxFragment | StringLiteral | undefined,
+  initializer:
+    | JsxSelfClosingElement
+    | JsxElement
+    | JsxExpression
+    | JsxFragment
+    | StringLiteral
+    | undefined,
 ): unknown {
   if (!initializer) {
     return true; // boolean attribute

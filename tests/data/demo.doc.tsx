@@ -13,10 +13,7 @@ interface AllAttrTypesProps {
 declare function AllAttrTypes(props: AllAttrTypesProps): Element;
 declare function Div(props: { children?: Element }): Element;
 
-<MyComponent
-  name="Test"
-  description="My first component"
-/>;
+<MyComponent name="Test" description="My first component" />;
 
 <AllAttrTypes
   stringAttr="str"

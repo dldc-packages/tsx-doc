@@ -28,12 +28,14 @@ JSX is a well-known syntax with decades of tooling support:
 ## Installation
 
 ```bash
-deno add jsr:@dldc/tsx-doc
+npm install @dldc/tsx-doc
 ```
+
+Works with `pnpm` and `yarn` as well.
 
 ## Configuration
 
-In your `deno.json` (or `tsconfig.json`), set the JSX compiler options to use `@dldc/tsx-doc` as the import source:
+In your `tsconfig.json`, set the JSX compiler options to use `@dldc/tsx-doc` as the import source:
 
 ```json
 {
@@ -72,9 +74,10 @@ declare function Section(props: { children?: Element }): Element;
 Then parse it:
 
 ```typescript
+import { readFile } from "node:fs/promises";
 import { parse } from "@dldc/tsx-doc";
 
-const content = await Deno.readTextFile("./doc.tsx");
+const content = await readFile("./doc.tsx", "utf-8");
 const doc = parse(content);
 
 console.log(doc.children);
