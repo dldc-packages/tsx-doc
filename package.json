@@ -1,6 +1,6 @@
 {
   "name": "@dldc/tsx-doc",
-  "version": "0.2.1",
+  "version": "0.2.2",
   "description": "Using TypeScript and JSX as markup languages",
   "license": "MIT",
   "repository": {
