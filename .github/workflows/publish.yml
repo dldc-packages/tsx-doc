@@ -13,7 +13,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - uses: voidzero-dev/setup-vp@v1.21.2
+      - uses: voidzero-dev/setup-vp@v1.22.0
         with:
           # Node + pnpm resolve from package.json devEngines (no .node-version file).
           cache: true
@@ -29,7 +29,7 @@ jobs:
       id-token: write # required for the npm OIDC trusted-publishing exchange
     steps:
       - uses: actions/checkout@v4
-      - uses: voidzero-dev/setup-vp@v1.21.2
+      - uses: voidzero-dev/setup-vp@v1.22.0
         with:
           cache: false # npm guidance: never cache in release builds
           # No registry-url: setup-vp writes `_authToken=${NODE_AUTH_TOKEN}` to
